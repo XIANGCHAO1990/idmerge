@@ -10,7 +10,7 @@ import numpy as np
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-# BASE_DIR = '/Users/jingju/Desktop/workspace/Identy/identy'
+
 
 def compressimage(img):
     width = img.width
