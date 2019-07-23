@@ -12,23 +12,23 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-def compressimage(img):
-    width = img.width
-    height = img.height
-    rate = 1.0
+# def compressimage(img):
+#     width = img.width
+#     height = img.height
+#     rate = 1.0
 
-    if width >= 2000 or height >= 2000:
-        rate = 0.05
-    elif width >= 1000 or height >= 1000:
-        rate = 0.15
-    elif width >= 500 or height >= 500:
-        rate = 0.9
+#     if width >= 2000 or height >= 2000:
+#         rate = 0.05
+#     elif width >= 1000 or height >= 1000:
+#         rate = 0.15
+#     elif width >= 500 or height >= 500:
+#         rate = 0.9
 
-    width = int(width * rate)
-    height = int(height * rate)
+#     width = int(width * rate)
+#     height = int(height * rate)
 
-    img.thumbnail((width, height), Image.ANTIALIAS)
-    return img
+#     img.thumbnail((width, height), Image.ANTIALIAS)
+#     return img
 
 
 def base64_to_image(base64_str):
@@ -110,7 +110,7 @@ def mergeup(name,sex,nation,bir,headImg,address,idCardNo):
     im = cv2.cvtColor(np.asarray(im), cv2.COLOR_RGBA2BGRA)
     im = changeBackground(avatar, im, (480, 670), (220, 1220))
     im = PImage.fromarray(cv2.cvtColor(im, cv2.COLOR_BGRA2RGBA))
-    im = compressimage(im)
+    im = im.resize((500,300), Image.ANTIALIAS)
     im.save(BASE_DIR + '/up.png')
     basestr = image_to_base64(im)
     return basestr
@@ -124,7 +124,7 @@ def mergedown(police,expiryDate):
     draw.text((750, 992), expiryDate, fill=(0, 0, 0), font=other_font)
     im = cv2.cvtColor(np.asarray(im), cv2.COLOR_RGBA2BGRA)
     im = PImage.fromarray(cv2.cvtColor(im, cv2.COLOR_BGRA2RGBA))
-    im = compressimage(im)
+    im = im.resize((500,300), Image.ANTIALIAS)
     im.save(BASE_DIR+'/down.png')
     basestr = image_to_base64(im)
     return basestr
